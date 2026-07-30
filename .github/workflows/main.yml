@@ -36,8 +36,13 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./docker
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
+    - name: Configure eks access
+      run: |
+        aws eks update-kubeconfig --region us-west-2 --name pacman-cluster
+
     - name: EKS deployment
       run: |
+        kubectl apply -f ./k8s/storage-class.yaml
         kubectl apply -f ./k8s/db-sts.yaml  
         kubectl apply -f ./k8s/app-deployment.yaml
         
