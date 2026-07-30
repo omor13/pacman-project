@@ -45,4 +45,7 @@ jobs:
         kubectl apply -f ./k8s/storage-class.yaml
         kubectl apply -f ./k8s/db-sts.yaml  
         kubectl apply -f ./k8s/app-deployment.yaml
-        
+        kubectl set image deployment/pacman-app pacman=416338226474.dkr.ecr.us-west-2.amazonaws.com/myapps/pacman:${{ github.sha }}
+        kubectl rollout status deployment pacman-app
+        kubectl rollout status statefulset mongo
+        kubectl get services pacman-service
