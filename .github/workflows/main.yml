@@ -45,4 +45,3 @@ jobs:
         kubectl apply -f ./k8s/storage-class.yaml
         kubectl apply -f ./k8s/db-sts.yaml  
         kubectl apply -f ./k8s/app-deployment.yaml
-        
