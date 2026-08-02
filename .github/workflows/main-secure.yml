@@ -54,3 +54,4 @@ jobs:
         kubectl rollout status deployment pacman-app
         kubectl rollout status statefulset mongo
         kubectl get services pacman-service
+        
